@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy New Year 2025</title>
+  <style>
+    /* Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background: radial-gradient(circle, #1e3c72, #2a5298);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main Container */
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Happy New Year Text Animation */
+.happy-new-year {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.word {
+  font-size: 2.5rem;
+  color: white;
+  opacity: 0;
+  transform: translateY(-100px);
+  animation: drop 1s ease-out forwards;
+}
+
+.word:nth-child(1) { animation-delay: 0.1s; }
+.word:nth-child(2) { animation-delay: 0.2s; }
+.word:nth-child(3) { animation-delay: 0.3s; }
+.word:nth-child(4) { animation-delay: 0.4s; }
+.word:nth-child(5) { animation-delay: 0.5s; }
+.word:nth-child(6) { animation-delay: 0.6s; }
+.word:nth-child(7) { animation-delay: 0.7s; }
+.word:nth-child(8) { animation-delay: 0.8s; }
+.word:nth-child(9) { animation-delay: 0.9s; }
+.word:nth-child(10) { animation-delay: 1s; }
+.word:nth-child(11) { animation-delay: 1.1s; }
+.word:nth-child(12) { animation-delay: 1.2s; }
+
+@keyframes drop {
+  0% { opacity: 0; transform: translateY(-100px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Year Animation */
+.year-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.number-box {
+  width: 60px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff007f, #ffcc00);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ff007f, 0 0 30px #ffcc00;
+  position: relative;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.number-change {
+  animation: moveUp 2s ease-in-out forwards;
+}
+
+.number-new {
+  opacity: 0;
+  position: absolute;
+  left: calc(100% - 80px); /* Align over "4" */
+  animation: fadeIn 2s ease-in-out 2s forwards;
+}
+
+@keyframes moveUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Background Canvas */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Happy New Year Animation -->
+    <div class="happy-new-year">
+      <span class="word">H</span>
+      <span class="word">a</span>
+      <span class="word">p</span>
+      <span class="word">p</span>
+      <span class="word">y</span>
+      <span class="word">N</span>
+      <span class="word">e</span>
+      <span class="word">w</span>
+      <span class="word">Y</span>
+      <span class="word">e</span>
+      <span class="word">a</span>
+      <span class="word">r</span>
+    </div>
+
+    <!-- Year Animation (2024 -> 2025) -->
+    <div class="year-container">
+      <div class="number-box">2</div>
+      <div class="number-box">0</div>
+      <div class="number-box">2</div>
+      <div class="number-box number-change" id="number-4">4</div>
+      <div class="number-box number-new" id="number-5">5</div>
+    </div>
+
+    <!-- Background Effects -->
+    <canvas id="background-effects"></canvas>
+  </div>
+  <script>
+    // Particle Background Animation (🎉, 🎆 Effects)
+const canvas = document.getElementById("background-effects");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesArray = [];
+const emojis = ["🎉", "🎆", "✨", "🎇"];
+
+class Particle {
+  constructor(x, y, size, emoji, velocityX, velocityY) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.emoji = emoji;
+    this.velocityX = velocityX;
+    this.velocityY = velocityY;
+    this.opacity = 1;
+  }
+
+  draw() {
+    ctx.font = `${this.size}px Arial`;
+    ctx.globalAlpha = this.opacity;
+    ctx.fillText(this.emoji, this.x, this.y);
+  }
+
+  update() {
+    this.x += this.velocityX;
+    this.y += this.velocityY;
+    this.opacity -= 0.01; // Fade effect
+    if (this.opacity <= 0) {
+      this.reset();
+    }
+  }
+
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.opacity = 1;
+    this.size = Math.random() * 20 + 20;
+    this.emoji = emojis[Math.floor(Math.random() * emojis.length)];
+    this.velocityX = (Math.random() - 0.5) * 2;
+    this.velocityY = (Math.random() - 0.5) * 2;
+  }
+}
+
+function createParticles() {
+  for (let i = 0; i < 50; i++) {
+    const size = Math.random() * 20 + 20;
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    const velocityX = (Math.random() - 0.5) * 2;
+    const velocityY = (Math.random() - 0.5) * 2;
+    const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+    particlesArray.push(new Particle(x, y, size, emoji, velocityX, velocityY));
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particlesArray.forEach((particle) => {
+    particle.update();
+    particle.draw();
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+createParticles();
+animateParticles();
+
+  </script>
+</body>
+</html>
