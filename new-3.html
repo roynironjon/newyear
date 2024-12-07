@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy New Year</title>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap');
+
+    /* General Styles */
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #333;
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      flex-direction: column;
+    }
+
+    /* Happy New Year Container */
+    .new-year-container {
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 5rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #ff00aa, 0 0 30px #ff00aa, 0 0 60px #ff00aa;
+    }
+
+    /* Animated Text */
+    h1 span {
+      letter-spacing: 6px;
+      font-weight: 600;
+      font-size: 6rem;
+      display: inline-block;
+      opacity: 0;
+      animation: dropIn 0.6s ease forwards;
+      text-shadow: 0 0 5px #ff00aa, 0 0 25px #ff00aa, 0 0 50px #ff00aa;
+    }
+
+    h1 span:nth-child(odd) {
+      color: #ff00aa;
+    }
+    h1 span:nth-child(even) {
+      color: #00ffaa;
+    }
+
+    h2 {
+      margin: 10px 0;
+      font-size: 2.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      animation-delay: 3s;
+      text-shadow: 0 0 5px #00ffff, 0 0 15px #00ffff, 0 0 30px #00ffff;
+    }
+
+    /* Animations */
+    @keyframes dropIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-60px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .login-btn {
+      background-color: #4267B2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="new-year-container">
+    <h1 id="new-year-text">Happy New Year</h1>
+    <h2 id="user-name">Login to see your name here!</h2>
+  </div>
+
+  <script>
+    // Facebook SDK Initialization
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: 'YOUR_APP_ID', // Replace with your Facebook App ID
+        cookie: true,
+        xfbml: true,
+        version: 'v16.0' // Use the latest version
+      });
+    };
+
+    // Function to wrap text in spans for animation
+    function animateText(element, text) {
+      let spaned = '';
+      for (let char of text) {
+        if (char === ' ') {
+          spaned += ' '; // Preserve spaces
+        } else {
+          spaned += `<span>${char}</span>`;
+        }
+      }
+      element.innerHTML = spaned;
+    }
+
+    // Handle Facebook Login
+    document.getElementById('fb-login-btn').addEventListener('click', () => {
+      FB.login((response) => {
+        if (response.authResponse) {
+          FB.api('/me', { fields: 'name' }, (response) => {
+            const userName = response.name;
+            const userNameElement = document.getElementById('user-name');
+            userNameElement.innerHTML = userName;
+            animateText(userNameElement, userName);
+
+            // Hide the login button after successful login
+            document.getElementById('fb-login-btn').style.display = 'none';
+          });
+        }
+      }, { scope: 'public_profile' });
+    });
+
+    // Initial Animation for "Happy New Year"
+    const newYearText = document.getElementById('new-year-text');
+    animateText(newYearText, newYearText.textContent);
+  </script>
+</body>
+</html>
