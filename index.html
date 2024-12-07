@@ -231,12 +231,38 @@
         font-size: 2.5rem;
       }
     }
+     /* Orb as Moon */
+     .orb {
+      animation: spin 20s linear infinite; /* Slow spinning for a calm moon effect */
+      width: 150px;
+      height: 150px;
+      margin: auto;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff, #b0c4de, #708090);
+      box-shadow: 
+        0 0 50px #ffffff, 
+        0 0 100px #b0c4de, 
+        0 0 150px #708090;
+      position: absolute;
+      right: 460px;
+      top: 100px;
+    }
+
+    /* Spinning Animation */
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Background Effects -->
   <div class="background-effects"></div>
-
+  <div class="orb"></div>
   <!-- Loading Animation -->
   <div class="container">
     <p class="welcome">welcome</p>
