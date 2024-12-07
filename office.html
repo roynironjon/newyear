@@ -17,6 +17,7 @@
       background-color: #333;
       color: #fff;
       font-family: 'Oswald', sans-serif;
+      overflow: hidden;
     }
 
     /* Loading Animation Container */
@@ -30,8 +31,6 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-
-      /* Animation */
       animation-name: box;
       animation-duration: 4s;
       animation-timing-function: ease;
@@ -42,8 +41,6 @@
       font-size: 150px;
       line-height: 50px;
       height: 100px;
-
-      /* Animation */
       animation-name: wel;
       animation-duration: 4s;
       animation-fill-mode: forwards;
@@ -55,8 +52,6 @@
       font-size: 100px;
       line-height: 80px;
       position: absolute;
-
-      /* Animation */
       animation-name: go;
       animation-duration: 4s;
       animation-fill-mode: forwards;
@@ -142,21 +137,6 @@
     h1 span:nth-child(even) {
       color: #00ffaa;
     }
-    /* Text Animation */
-    h1 span {
-      letter-spacing: 6px;
-      font-weight: 600;
-      font-size: 6rem;
-      display: inline-block;
-      opacity: 0;
-      text-transform: uppercase;
-      animation-duration: 0.6s;
-      animation-name: dropIn;
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-      text-shadow: 0 0 5px #ff00aa, 0 0 25px #ff00aa, 0 0 50px #ff00aa,
-      0 0 100px #ff00aa, 0 0 200px #ff00aa;
-    }
 
     /* Sequential animation delay for each letter */
     h1 span:nth-child(1) { animation-delay: 0.2s; }
@@ -189,9 +169,61 @@
         transform: translate3d(0, 0, 0);
       }
     }
+
+    /* Facebook ID at the bottom */
+    .facebook-id {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
+      animation: fadeIn 2s forwards;
+    }
+
+    /* Fade-in animation for Facebook ID */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Background Effects */
+    .background-effects {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 159, 64, 0.7), rgba(75, 0, 130, 0.7));
+
+      animation: pulse 4s infinite;
+      z-index: -1;
+    }
+
+    /* Background Animation */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Background Effects -->
+  <div class="background-effects"></div>
+
   <!-- Loading Animation -->
   <div class="container">
     <p class="welcome">welcome</p>
@@ -201,7 +233,12 @@
   <!-- Happy New Year Animation -->
   <div class="new-year-container">
     <h1>Happy New Year</h1>
+    <h1>2024</h1>
+  </div>
 
+  <!-- Facebook ID -->
+  <div class="facebook-id" id="facebook-id">
+    Facebook ID: your.facebook.id
   </div>
 
   <script>
@@ -213,6 +250,10 @@
       // Show the Happy New Year animation
       const newYearContainer = document.querySelector('.new-year-container');
       newYearContainer.style.display = 'block';
+
+      // Show the Facebook ID at the bottom
+      const facebookId = document.getElementById('facebook-id');
+      facebookId.style.display = 'block';
 
       // Function to wrap each letter in a span for animation
       const spanText = (text) => {
@@ -229,8 +270,8 @@
       };
 
       // Apply span wrapping to the Happy New Year text
-      const headline = document.querySelector('h1');
-      spanText(headline);
+      const headline = document.querySelectorAll('h1');
+      headline.forEach(spanText);
     }, 4000); // Wait for 4 seconds for the loading animation to complete
   </script>
 </body>
