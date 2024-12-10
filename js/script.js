@@ -1,23 +1,31 @@
-const emojiContainer = document.getElementById('emoji-container');
-const emojis = ['🎉', '✨', '🎊', '🎆', '🎈', '🥳', '🌟'];
-
-function createEmoji() {
-  const emoji = document.createElement('div');
-  emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-  emoji.className = 'emoji';
-  emoji.style.left = Math.random() * 100 + 'vw';
-  emoji.style.animationDuration = Math.random() * 3 + 2 + 's';
-  emoji.style.fontSize = Math.random() * 20 + 20 + 'px';
-  emojiContainer.appendChild(emoji);
-
-  setTimeout(() => emoji.remove(), 5000);
-}
-
-setInterval(createEmoji, 200);
-
-setTimeout(() => {
+ // After the loading animation finishes
+ setTimeout(() => {
+  // Hide the loading animation
   document.querySelector('.container').style.display = 'none';
-  document.querySelector('.new-year-container').style.display = 'block';
-  document.getElementById('facebook-id').style.display = 'block';
-}, 6000);
 
+  // Show the Happy New Year animation
+  const newYearContainer = document.querySelector('.new-year-container');
+  newYearContainer.style.display = 'block';
+
+  // Show the Facebook ID at the bottom
+  const facebookId = document.getElementById('facebook-id');
+  facebookId.style.display = 'block';
+
+  // Function to wrap each letter in a span for animation
+  const spanText = (text) => {
+    const string = text.innerText;
+    let spaned = '';
+    for (let i = 0; i < string.length; i++) {
+      if (string[i] === ' ') {
+        spaned += ' '; // Preserve spaces
+      } else {
+        spaned += `<span>${string[i]}</span>`;
+      }
+    }
+    text.innerHTML = spaned;
+  };
+
+  // Apply span wrapping to the Happy New Year text
+  const headline = document.querySelectorAll('h1');
+  headline.forEach(spanText);
+}, 6000); // Wait for 4 seconds for the loading animation to complete

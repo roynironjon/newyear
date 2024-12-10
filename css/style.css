@@ -1,6 +1,6 @@
-/* General Styles */
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap');
 
+/* General Styles */
 body {
   margin: 0;
   display: flex;
@@ -11,9 +11,9 @@ body {
   color: #fff;
   font-family: 'Oswald', sans-serif;
   overflow: hidden;
-  background: radial-gradient(circle, #1e3c72, #2a5298);
 }
 
+/* Loading Animation Container */
 .container {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
@@ -24,94 +24,148 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  animation: box 4s ease;
+  animation-name: box;
+  animation-duration: 4s;
+  animation-timing-function: ease;
 }
 
+/* Welcome Text Animation */
 .welcome {
   font-size: 150px;
-  animation: wel 4s forwards;
+  line-height: 50px;
+  height: 100px;
+  animation-name: wel;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
+/* Go Away Text Animation */
 .go-away {
   text-transform: uppercase;
   font-size: 100px;
+  line-height: 80px;
   position: absolute;
-  animation: go 4s forwards;
+  animation-name: go;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6), -2px -2px 4px rgba(255, 255, 255, 0.3);
 }
 
+/* Box Animation Keyframes */
 @keyframes box {
-  0%, 90% { height: 0; }
-  10%, 80% { height: 120px; }
+  0% {
+    height: 0px;
+    width: 0%;
+  }
+  10% {
+    height: 0px;
+    width: 520px;
+  }
+  20% {
+    height: 120px;
+  }
+  80% {
+    height: 120px;
+  }
+  90% {
+    height: 0px;
+  }
+  100% {
+    height: 120px;
+  }
 }
 
+/* Welcome Text Keyframes */
 @keyframes wel {
-  0%, 90% { opacity: 1; }
-  91%, 100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  91% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
+/* Go Away Text Keyframes */
 @keyframes go {
-  0%, 90% { opacity: 0; }
-  91%, 100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  91% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
+/* Hidden until loading animation finishes */
 .new-year-container {
   display: none;
   text-align: center;
   padding: 30px;
 }
 
- /* Animated Text */
- h1 span {
-    letter-spacing: 6px;
-    font-weight: 600;
-    font-size: 6rem;
-    display: inline-block;
+/* Animated Text */
+h1 span {
+  letter-spacing: 6px;
+  font-weight: 600;
+  font-size: 6rem;
+  display: inline-block;
+  opacity: 0;
+  animation: dropIn 0.6s ease forwards;
+  text-shadow: 0 0 5px #ff00aa, 0 0 25px #ff00aa, 0 0 50px #ff00aa;
+}
+
+h1 span:nth-child(odd) {
+  color: #ff00aa;
+}
+h1 span:nth-child(even) {
+  color: #00ffaa;
+}
+
+/* Sequential animation delay for each letter */
+h1 span:nth-child(1) { animation-delay: 0.2s; }
+h1 span:nth-child(2) { animation-delay: 0.4s; }
+h1 span:nth-child(3) { animation-delay: 0.6s; }
+h1 span:nth-child(4) { animation-delay: 0.8s; }
+h1 span:nth-child(5) { animation-delay: 1s; }
+h1 span:nth-child(6) { animation-delay: 1.2s; }
+h1 span:nth-child(7) { animation-delay: 1.4s; }
+h1 span:nth-child(8) { animation-delay: 1.6s; }
+h1 span:nth-child(9) { animation-delay: 1.8s; }
+h1 span:nth-child(10) { animation-delay: 2s; }
+h1 span:nth-child(11) { animation-delay: 2.2s; }
+h1 span:nth-child(12) { animation-delay: 2.4s; }
+h1 span:nth-child(13) { animation-delay: 2.6s; }
+h1 span:nth-child(14) { animation-delay: 2.8s; }
+
+/* Drop-In Animation Keyframes */
+@keyframes dropIn {
+  0% {
     opacity: 0;
-    animation: dropIn 0.6s ease forwards;
-    text-shadow: 0 0 5px #ff00aa, 0 0 25px #ff00aa, 0 0 50px #ff00aa;
+    transform: translate3d(0, -60vh, 0);
   }
-
-  h1 span:nth-child(odd) {
-    color: #ff00aa;
+  75% {
+    opacity: 1;
+    transform: translate3d(0, 2vh, 0);
   }
-  h1 span:nth-child(even) {
-    color: #00ffaa;
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
+}
 
-  /* Sequential animation delay for each letter */
-  h1 span:nth-child(1) { animation-delay: 0.2s; }
-  h1 span:nth-child(2) { animation-delay: 0.4s; }
-  h1 span:nth-child(3) { animation-delay: 0.6s; }
-  h1 span:nth-child(4) { animation-delay: 0.8s; }
-  h1 span:nth-child(5) { animation-delay: 1s; }
-  h1 span:nth-child(6) { animation-delay: 1.2s; }
-  h1 span:nth-child(7) { animation-delay: 1.4s; }
-  h1 span:nth-child(8) { animation-delay: 1.6s; }
-  h1 span:nth-child(9) { animation-delay: 1.8s; }
-  h1 span:nth-child(10) { animation-delay: 2s; }
-  h1 span:nth-child(11) { animation-delay: 2.2s; }
-  h1 span:nth-child(12) { animation-delay: 2.4s; }
-  h1 span:nth-child(13) { animation-delay: 2.6s; }
-  h1 span:nth-child(14) { animation-delay: 2.8s; }
-
-  /* Drop-In Animation Keyframes */
-  @keyframes dropIn {
-    0% {
-      opacity: 0;
-      transform: translate3d(0, -60vh, 0);
-    }
-    75% {
-      opacity: 1;
-      transform: translate3d(0, 2vh, 0);
-    }
-    100% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-
-
+/* Facebook ID at the bottom */
 .facebook-id {
   display: none;
   position: fixed;
@@ -124,47 +178,59 @@ body {
   animation: fadeIn 2s forwards;
 }
 
+/* Fade-in animation for Facebook ID */
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.emoji-container {
+/* Background Effects */
+.background-effects {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  /* background: radial-gradient(circle, rgba(255, 159, 64, 0.7), rgba(75, 0, 130, 0.7)); */
+  animation: pulse 4s infinite;
   z-index: -1;
-  overflow: hidden;
 }
 
-.emoji {
-  position: absolute;
-  font-size: 30px;
-  animation: float 4s infinite ease-in-out;
-  opacity: 0.8;
+/* Background Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
-
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0.3; }
+@media only screen and (max-width: 767px){
+  h1 span {
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-size: 4rem;
+  }
 }
-
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
+@media only screen and (max-width: 767px){
+  h1 span {
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 2.5rem;
+  }
 }
  /* Orb as Moon */
  .orb {
   animation: spin 20s linear infinite; /* Slow spinning for a calm moon effect */
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   margin: auto;
   border-radius: 50%;
   background: radial-gradient(circle, #ffffff, #b0c4de, #708090);
@@ -173,9 +239,8 @@ canvas {
     0 0 100px #b0c4de, 
     0 0 150px #708090;
   position: absolute;
-  left: 60px;
-  top: 20px;
-  z-index: 9999;
+  right: 160px;
+  top: 60px;
 }
 
 /* Spinning Animation */
@@ -185,5 +250,15 @@ canvas {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+
+@media screen and (max-width: 640px){
+  .welcome {
+    font-size: 100px;
+  }
+  .go-away {
+    font-size: 90px;
   }
 }
