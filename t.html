@@ -29,24 +29,20 @@
         color: { value: ["#ffffff", "#b22234", "#3c3bfe"] },
         shape: { type: "circle" },
         opacity: {
-          value: 1,
+          value: 0.8,
           animation: {
-            enable: true,
-            speed: 0.5,
-            minimumValue: 0.1,
+            enable: false
           },
         },
         size: {
-          value: { min: 2, max: 10 },
+          value: { min: 2, max: 5 },
           animation: {
-            enable: true,
-            speed: 20,
-            minimumValue: 1,
+            enable: false
           },
         },
         move: {
           enable: true,
-          speed: 6,
+          speed: 3,
           direction: "none",
           outModes: { default: "out" },
         },
@@ -54,7 +50,7 @@
       emitters: {
         direction: "top",
         position: { x: 50, y: 100 },
-        rate: { delay: 0.2, quantity: 5 },
+        rate: { delay: 0.5, quantity: 2 }, <!-- Reduced frequency -->
       },
     });
   </script>

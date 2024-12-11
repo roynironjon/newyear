@@ -29,3 +29,37 @@
   const headline = document.querySelectorAll('h1');
   headline.forEach(spanText);
 }, 6000); // Wait for 4 seconds for the loading animation to complete
+
+tsParticles.load("tsparticles", {
+  fullScreen: { enable: true },
+  background: { color: "#000" },
+  fpsLimit: 60,
+  particles: {
+    number: { value: 0 },
+    color: { value: ["#ffffff", "#b22234", "#3c3bfe"] },
+    shape: { type: "circle" },
+    opacity: {
+      value: 0.8,
+      animation: {
+        enable: false
+      },
+    },
+    size: {
+      value: { min: 2, max: 5 },
+      animation: {
+        enable: false
+      },
+    },
+    move: {
+      enable: true,
+      speed: 3,
+      direction: "none",
+      outModes: { default: "out" },
+    },
+  },
+  emitters: {
+    direction: "top",
+    position: { x: 50, y: 100 },
+    rate: { delay: 0.5, quantity: 2 }, 
+  },
+});
