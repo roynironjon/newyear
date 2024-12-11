@@ -12,7 +12,9 @@ body {
   font-family: 'Oswald', sans-serif;
   overflow: hidden;
 }
-
+/* canvas {
+  display: block;
+} */
 /* Loading Animation Container */
 .container {
   border-top: 1px solid white;
