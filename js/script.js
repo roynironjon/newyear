@@ -191,3 +191,23 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
+
+
+ // Function to update flame intensity dynamically
+ function updateFlameEffect(scale, opacity, blur, innerBlur) {
+  document.documentElement.style.setProperty('--flame-scale', scale);
+  document.documentElement.style.setProperty('--flame-opacity', opacity);
+  document.documentElement.style.setProperty('--flame-blur', blur);
+  document.documentElement.style.setProperty('--inner-flame-blur', innerBlur);
+}
+
+// Example usage: Increase intensity after 3 seconds
+setTimeout(() => {
+  updateFlameEffect('1.5', '1', '40px', '50px'); // Intense flame effect
+}, 3000);
+
+// Example usage: Reduce intensity after 6 seconds
+setTimeout(() => {
+  updateFlameEffect('1.1', '0.6', '20px', '30px'); // Milder flame effect
+}, 6000);
