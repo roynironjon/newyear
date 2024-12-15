@@ -17,20 +17,18 @@
     <p class="welcome">welcome</p>
     <p class="go-away">go away</p>
   </div>
-
   <!-- Happy New Year Animation -->
   <div class="new-year-container">
-    <h1>Happy New Year</h1>
-    <h1>2025</h1>
-    <div class="fire-container">
-      <img src="images/nironjonroy.png" alt="Your Image">
-      <div class="flame"></div>
-    </div>
-  
-  </div>
-  <div class="wrapper">
-    <h4>RoyN</h4>
-    <h4>RoyN</h4>
+    <h1>
+      Happy New Year
+    </h1>
+      <h1>
+        2025
+      </h1>
+      <div class="fire-container">
+          <img src="images/nironjonroy.png" alt="Your Image">
+          <div class="flame"></div>
+      </div>
   </div>
   <!-- Facebook ID -->
   <div class="facebook-id" id="facebook-id">
@@ -38,138 +36,7 @@
   </div>
   <div id="tsparticles"></div>
   <canvas id="fireworks"></canvas>
-
   <!-- main js file link up code here -->
-   <script src="js/script.js"></script>
-
-
-
-   <script>
-        const canvas = document.getElementById("fireworks");
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const fireworks = [];
-    const gravity = 0.05;
-    const minHeight = canvas.height * 0.2; // Minimum height before exploding (30% of canvas height)
-
-    class Firework {
-      constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.speedY = Math.random() * -4 - 3; // Slower rocket speed upwards
-        this.exploded = false;
-        this.particles = [];
-      }
-
-      update() {
-        if (!this.exploded) {
-          this.y += this.speedY;
-          this.speedY += gravity;
-
-          // Explode when speedY becomes positive or when it reaches minHeight
-          if (this.speedY >= 0 || this.y <= minHeight) {
-            this.explode();
-          }
-        } else {
-          this.particles.forEach((particle, index) => {
-            particle.update();
-            if (particle.alpha <= 0) {
-              this.particles.splice(index, 1);
-            }
-          });
-        }
-      }
-
-      draw() {
-        if (!this.exploded) {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
-          ctx.fill();
-          ctx.closePath();
-        } else {
-          this.particles.forEach((particle) => particle.draw());
-        }
-      }
-
-      explode() {
-        this.exploded = true;
-        const colors = ["#ff4747", "#ffdd57", "#47ff47", "#4747ff", "#ff47ff"];
-        for (let i = 0; i < 80; i++) {
-          const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 3 + 2;
-          const dx = Math.cos(angle) * speed;
-          const dy = Math.sin(angle) * speed;
-          const particleColor = colors[Math.floor(Math.random() * colors.length)];
-          this.particles.push(new Particle(this.x, this.y, dx, dy, particleColor));
-        }
-      }
-    }
-
-    class Particle {
-      constructor(x, y, dx, dy, color) {
-        this.x = x;
-        this.y = y;
-        this.dx = dx;
-        this.dy = dy;
-        this.size = Math.random() * 3 + 2;
-        this.color = color;
-        this.alpha = 1;
-      }
-
-      update() {
-        this.x += this.dx;
-        this.y += this.dy;
-        this.dy += gravity / 2; // Falling effect
-        this.alpha -= 0.02; // Fade out
-      }
-
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    function createFirework() {
-      const x = Math.random() * canvas.width;
-      const y = canvas.height;
-      const colors = ["#ff4747", "#ffdd57", "#47ff47", "#4747ff", "#ff47ff"];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      fireworks.push(new Firework(x, y, color));
-    }
-
-    function animate() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      fireworks.forEach((firework, index) => {
-        firework.update();
-        firework.draw();
-        if (firework.exploded && firework.particles.length === 0) {
-          fireworks.splice(index, 1);
-        }
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    setInterval(createFirework, 1000); // Launch a firework every second
-    animate();
-
-    // Resize canvas when the window is resized
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-   </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
