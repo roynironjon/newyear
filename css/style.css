@@ -220,24 +220,7 @@ h1 span:nth-child(14) { animation-delay: 2.8s; }
     transform: scale(1);
   }
 }
-@media only screen and (max-width: 767px){
-  h1 span {
-    letter-spacing: 3px;
-    font-weight: 600;
-    font-size: 4rem;
-  }
-  .background-video {
-    top: 0% !important;
-    left: -186px !important;
-  }
-}
-@media only screen and (max-width: 767px){
-  h1 span {
-    letter-spacing: 2px;
-    font-weight: 600;
-    font-size: 2.5rem;
-  }
-}
+
  /* Orb as Moon */
  .orb {
   animation: spin 20s linear infinite; /* Slow spinning for a calm moon effect */
@@ -255,6 +238,12 @@ h1 span:nth-child(14) { animation-delay: 2.8s; }
   top: 60px;
   z-index: 99999999999999999;
 }
+/* .sun{
+  position: relative;
+}
+.orb .name{
+  position: absolute;
+} */
 
 /* Spinning Animation */
 @keyframes spin {
@@ -352,20 +341,19 @@ h1 span:nth-child(14) { animation-delay: 2.8s; }
     opacity: 0.8;
   }
 }
-
-@media screen and (max-width: 640px){
-  .welcome {
-    font-size: 42px !important;
-  }
-  .go-away {
-    font-size: 32px !important;
-    line-height: 32px !important;
-  }
-  .facebook-id{
-    display: none !important;
-  }
+.img {
+	position: absolute;
+	right: -105px;
+	z-index: -1;
+	top: 200px;
+	opacity: .4;
 }
-
+.img img{
+  position: relative; 
+  -webkit-box-shadow: inset 0 0 10px 10px #000;    
+    -moz-box-shadow: inset 0 0 10px 10px #000;
+    box-shadow: inset 0 0 10px 10px #000;
+}
 
 .background-video {
 	z-index: -1;
@@ -377,4 +365,65 @@ h1 span:nth-child(14) { animation-delay: 2.8s; }
   height: 400px;
   background: transparent;
   border-radius: 50%;
+}
+.name h4 {
+	font-size: 28px;
+	text-transform: uppercase;
+	position: absolute;
+	right: 1px;
+	top: 52%;
+	z-index: -1;
+	opacity: .5;
+	letter-spacing: 5px;
+}
+
+@media only screen and (max-width: 767px){
+  h1 span {
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-size: 4rem;
+  }
+  .background-video {
+    top: 0% !important;
+    left: -186px !important;
+  }
+}
+@media only screen and (max-width: 767px){
+  h1 span {
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 2.5rem;
+  }
+  .img {
+    position: absolute;
+    right: -248px;
+    z-index: -1;
+    top: -14px;
+    opacity: .4;
+  }
+  .name h4 {
+    right: -146px;
+    top: 24%;
+  }
+}
+@media screen and (max-width: 640px){
+  .welcome {
+    font-size: 42px !important;
+  }
+  .go-away {
+    font-size: 32px !important;
+    line-height: 32px !important;
+  }
+  .facebook-id{
+    display: none !important;
+  }
+  .img {
+    right: -105px;
+    top: -140px;
+  }
+  .name h4 {
+    font-size: 26px;
+    top: -4%;
+    right: 0px;
+  }
 }
