@@ -34,7 +34,7 @@ body {
 
 /* Welcome Text Animation */
 .welcome {
-  font-size: 60px;
+  font-size: 60px !important;
   line-height: 50px;
   animation-name: wel;
   animation-duration: 4s;
@@ -46,7 +46,7 @@ body {
 /* Go Away Text Animation */
 .go-away {
   text-transform: uppercase;
-  font-size: 60px;
+  font-size: 60px !important;
   line-height: 60px;
   position: absolute;
   animation-name: go;
