@@ -253,7 +253,7 @@ h1 span:nth-child(14) { animation-delay: 2.8s; }
   position: absolute;
   right: 160px;
   top: 60px;
-  z-index: 99;
+  z-index: 99999999999999999;
 }
 
 /* Spinning Animation */
@@ -360,6 +360,9 @@ h1 span:nth-child(14) { animation-delay: 2.8s; }
   .go-away {
     font-size: 32px !important;
     line-height: 32px !important;
+  }
+  .facebook-id{
+    display: none !important;
   }
 }
 
